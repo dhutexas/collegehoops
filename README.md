@@ -31,7 +31,7 @@ The `espn_game_id` parameter is the unique identifier for each game (past and fu
  * ```id```: team id; numeric team id used by ESPN
  * ```link```: link; url link for ESPN website
 
-This dataset can be loaded by typing ```data("ids")```, after installing and loading the package.
+This dataset can be loaded by typing ```ids```, after installing and loading the package.
 
 ## Acknowledgements and Thanks
 
