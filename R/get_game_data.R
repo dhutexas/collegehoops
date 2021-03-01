@@ -53,7 +53,10 @@ get_game_data <- function(espn_game_id) {
         dplyr::mutate(game_id = game_json$header$id,
                season = game_json$header$season$year,
                season_type = game_json$header$season$type) %>%
-        tidyr::separate(participants, into=c('player1','player2'), sep = ',') %>%
+        tidyr::separate(participants,
+                        into=c('player1','player2'),
+                        sep = ',',
+                        fill = 'right') %>%
         dplyr::mutate(player1 = as.numeric(stringr::str_extract_all(player1, "\\d{7}")),
                player2 = as.numeric(stringr::str_extract_all(player2, "\\d{7}")))
 
@@ -65,8 +68,6 @@ get_game_data <- function(espn_game_id) {
     },
     error=function(cond) {
       message(paste("No pbp data available for gameId : ", espn_game_id))
-      message(cond)
-      # Choose a return value in case of error
       return(NULL) # does not return any information about the game if an error occurs
     }
   )
