@@ -6,6 +6,12 @@
 \usage{
 get_box_score_team(espn_game_id)
 }
+\arguments{
+\item{espn_game_id}{(str) The eight digit gameId for the desired game}
+}
+\value{
+A dataframe with team-level box-score information
+}
 \description{
 Requires use of ESPN oriented team names, found in locally saved file (ids.csv)
 }

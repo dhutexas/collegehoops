@@ -9,6 +9,9 @@
 #' @importFrom rlang .data
 #' @importFrom jsonlite fromJSON
 #'
+#' @param espn_game_id (str) The eight digit gameId for the desired game
+#' @return A dataframe with player-level box-score information
+#'
 
 espn_game_id = 401169632
 

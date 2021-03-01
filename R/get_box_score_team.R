@@ -9,6 +9,9 @@
 #' @importFrom rlang .data
 #' @importFrom jsonlite fromJSON
 #'
+#' @param espn_game_id (str) The eight digit gameId for the desired game
+#' @return A dataframe with team-level box-score information
+#'
 
 get_box_score_team <- function(espn_game_id) {
 
