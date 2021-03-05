@@ -17,8 +17,8 @@ get_kenpom_data <- function(season) {
     w <- options()$warn
     on.exit(options(warn=w))
     options(warn=-1)
-    lhs_quo = quo_name(enquo(lhs))
-    rhs_quo = quo_name(enquo(rhs))
+    lhs_quo = rlang::quo_name(rlang::enquo(lhs))
+    rhs_quo = rlang::quo_name(rlang::enquo(rhs))
     pipe = paste(lhs_quo, "%>%", rhs_quo)
     return(rlang::eval_tidy(rlang::parse_quosure(pipe)))
   }
@@ -51,9 +51,11 @@ get_kenpom_data <- function(season) {
 
   # convert char to double dtypes
   kenpom %>%
-    dplyr::mutate_at(vars(rk), funs(as.integer)) %>%
-    dplyr::mutate_at(vars(adj_em, adj_o, adj_d, adj_t, luck, sos_adj_em,
-                   sos_opp_o, sos_opp_d, ncsos_adj_em), funs(as.double)) -> kenpom
+    dplyr::mutate_at(dplyr::vars(rk),
+                     dplyr::funs(as.integer)) %>%
+    dplyr::mutate_at(dplyr::vars(adj_em, adj_o, adj_d, adj_t, luck, sos_adj_em,
+                   sos_opp_o, sos_opp_d, ncsos_adj_em),
+                   dplyr::funs(as.double)) -> kenpom
 
   return(kenpom)
 
