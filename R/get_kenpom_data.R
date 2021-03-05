@@ -39,11 +39,14 @@ get_kenpom_data <- function(season) {
     janitor::row_to_names(., 1) %>%
     tibble::as_tibble(., .name_repair = janitor::make_clean_names) %>%
     dplyr::select(-c(adj_o_2, adj_d_2, adj_t_2, luck_2, adj_em_3,
-              opp_o_2, opp_d_2, adj_em_5)) %>%
+                     opp_o_2, opp_d_2, adj_em_5)) %>%
     dplyr::rename(sos_adj_em = adj_em_2,
-           sos_opp_o = opp_o,
-           sos_opp_d = opp_d,
-           ncsos_adj_em = adj_em_4)
+                  sos_opp_o = opp_o,
+                  sos_opp_d = opp_d,
+                  ncsos_adj_em = adj_em_4) %>%
+    dplyr::mutate(team = stringr::str_replace_all(team, "[:digit:]", ""),
+                  team = stringr::str_replace_all(team, "['*']", ""),
+                  team = stringr::str_trim(team, side = 'right'))
 
   # drop rows without data (repeated headers)
   kenpom = kenpom[!grepl("Strength of Schedule", kenpom$sos_opp_o),]
@@ -52,10 +55,10 @@ get_kenpom_data <- function(season) {
   # convert char to double dtypes
   kenpom %>%
     dplyr::mutate_at(dplyr::vars(rk),
-                     dplyr::funs(as.integer)) %>%
+                     list(as.integer)) %>%
     dplyr::mutate_at(dplyr::vars(adj_em, adj_o, adj_d, adj_t, luck, sos_adj_em,
-                   sos_opp_o, sos_opp_d, ncsos_adj_em),
-                   dplyr::funs(as.double)) -> kenpom
+                                 sos_opp_o, sos_opp_d, ncsos_adj_em),
+                     list(as.double)) -> kenpom
 
   return(kenpom)
 
