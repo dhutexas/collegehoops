@@ -22,7 +22,7 @@ get_kenpom_data <- function(season) {
     pipe = paste(lhs_quo, "%>%", rhs_quo)
     return(rlang::eval_tidy(rlang::parse_quosure(pipe)))
   }
-  
+
   # season format for kenpom website
   # current: https://kenpom.com/index.php
   # past: https://kenpom.com/index.php?y=2020
@@ -31,7 +31,7 @@ get_kenpom_data <- function(season) {
   } else {
     url <- glue::glue("https://kenpom.com/index.php?y={season}")
   }
-  
+
   # pull table into df
   kenpom <- xml2::read_html(url) %>%
     rvest::html_node("table") %>%
@@ -40,15 +40,15 @@ get_kenpom_data <- function(season) {
     tibble::as_tibble(., .name_repair = janitor::make_clean_names) %>%
     dplyr::select(-c(adj_o_2, adj_d_2, adj_t_2, luck_2, adj_em_3,
               opp_o_2, opp_d_2, adj_em_5)) %>%
-    rename(sos_adj_em = adj_em_2,
+    dplyr::rename(sos_adj_em = adj_em_2,
            sos_opp_o = opp_o,
            sos_opp_d = opp_d,
            ncsos_adj_em = adj_em_4)
-  
+
   # drop rows without data (repeated headers)
   kenpom = kenpom[!grepl("Strength of Schedule", kenpom$sos_opp_o),]
   kenpom = kenpom[!grepl("OppO", kenpom$sos_opp_o),]
-  
+
   # convert char to double dtypes
   kenpom %>%
     dplyr::mutate_at(vars(rk), funs(as.integer)) %>%
@@ -56,5 +56,5 @@ get_kenpom_data <- function(season) {
                    sos_opp_o, sos_opp_d, ncsos_adj_em), funs(as.double)) -> kenpom
 
   return(kenpom)
-  
+
 }
