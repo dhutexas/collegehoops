@@ -9,9 +9,6 @@
 #' off.
 #'
 #' @param bracket A bracket to print off
-#' @param add_seed Add the team's seed in parenthesis
-#' @param add_prob Add the team's probability of making it this far
-#' @param w Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.
 #'
 #' @import data.table graphics
 #'
@@ -22,22 +19,14 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printBracket <- function(bracket, add_seed=TRUE, add_prob=TRUE, w=NULL){
+printBracket <- function(bracket){
   utils::data('seed_print_positions', package='ncaaStats', envir=environment())
   utils::data('slot_print_positions', package='ncaaStats', envir=environment())
   utils::data('tourney_seeds', package='ncaaStats', envir=environment())
   utils::data('teams', package='ncaaStats', envir=environment())
 
-  #Decide men or women
-  if(is.null(w)){
-    w <- bracket[1,women]
-    message(paste('assuming women =', w))
-  }
-  stopifnot(w==0 | w == 1)
-
   #Deep copy to avoid updating data
   bracket <- data.table::copy(bracket)
-  tourney_seeds <- tourney_seeds[women == w,]
 
   #Checks
   year <- sort(unique(bracket$season))
@@ -54,18 +43,14 @@ printBracket <- function(bracket, add_seed=TRUE, add_prob=TRUE, w=NULL){
   bracket <- merge(bracket, teams, by=KEYS, all.x=TRUE)
 
   #Parse seeds
-  if(add_seed){
-    bracket_seeds[,seed_int := as.integer(substr(seed, 2, 3))]
-    bracket <- merge(bracket, bracket_seeds[,list(teamid, women, seed_int)], by=KEYS)
+  bracket_seeds[,seed_int := as.integer(substr(seed, 2, 3))]
+  bracket <- merge(bracket, bracket_seeds[,list(teamid, women, seed_int)], by=KEYS)
 
-    bracket_seeds[,teamname := paste0(teamname, '-(', seed_int, ')')]
-    bracket[,teamname := paste0(teamname, '-(', seed_int, ')')]
-  }
+  bracket_seeds[,teamname := paste0(teamname, '-(', seed_int, ')')]
+  bracket[,teamname := paste0(teamname, '-(', seed_int, ')')]
 
   #Add probs
-  if(add_prob){
-    bracket[,teamname := paste0(teamname, '-(', round(prob, 2), ')')]
-  }
+  bracket[,teamname := paste0(teamname, '-(', round(prob, 2), ')')]
 
   #Add printing positions
   bracket_seeds <- merge(bracket_seeds, seed_print_positions, by=c('seed'), all.x=TRUE)
