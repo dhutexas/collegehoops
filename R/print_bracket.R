@@ -12,6 +12,9 @@
 #' @param add_seed Add the team's seed in parenthesis
 #' @param add_prob Add the team's probability of making it this far
 #' @param w Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.
+#'
+#' @import data.table graphics
+#'
 #' @return NULL
 #' @export
 #' @references
@@ -19,7 +22,7 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printableBracket <- function(bracket, add_seed=TRUE, add_prob=TRUE, w=NULL){
+printBracket <- function(bracket, add_seed=TRUE, add_prob=TRUE, w=NULL){
   utils::data('seed_print_positions', package='ncaaStats', envir=environment())
   utils::data('slot_print_positions', package='ncaaStats', envir=environment())
   utils::data('tourney_seeds', package='ncaaStats', envir=environment())

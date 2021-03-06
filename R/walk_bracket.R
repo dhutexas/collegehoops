@@ -7,6 +7,9 @@
 #' @description Given a dataframe of kaggle game predictions, this function
 #' returns data in a format which can be easily plotted
 #'
+#' @import data.table
+#'
+#'
 
 walkBracket <- function (preds, year = 2019, upset_bias = 0)
 {
