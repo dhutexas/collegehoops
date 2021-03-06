@@ -19,6 +19,7 @@ Imports:
     glue,
     jsonlite,
     janitor,
+    data.table,
     stringr,
     dplyr,
     tidyr,

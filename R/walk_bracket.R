@@ -8,7 +8,6 @@
 #' returns data in a format which can be easily plotted
 #'
 #' @import data.table
-#' @importFrom data.table ':='
 #'
 #'
 
