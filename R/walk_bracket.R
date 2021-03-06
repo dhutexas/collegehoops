@@ -14,6 +14,7 @@
 walkBracket <- function (preds, year = 2019)
 {
   utils::data("all_slots", package = "ncaaStats", envir = environment())
+  season = year
   preds <- preds[season == year, ]
   n1 <- nrow(preds)
   preds <- merge(preds, all_slots, by = c("season", "teamid_1",
