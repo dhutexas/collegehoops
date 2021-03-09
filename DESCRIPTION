@@ -24,7 +24,8 @@ Imports:
     dplyr,
     tidyr,
     tibble,
-    magrittr
+    magrittr,
+    lubridate
 RoxygenNote: 7.1.1
 Suggests: 
     testthat
