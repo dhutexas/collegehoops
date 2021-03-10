@@ -1,5 +1,5 @@
 # ncaaStats
-'ncaaStats' is an R package for gathering NCAA Men's Basketball data. The various functions within can efficiently produce dataframes of box-scores and play-by-play information for all games covered by ESPN.com. 
+'ncaaStats' is an R package for gathering NCAA Men's Basketball data. The various functions within can efficiently produce dataframes of play-by-play information (ESPN), box scores (ESPN), betting-odds (ESPN), and up-to-date ratings/rankings (KenPom). 
 
 ## Installation
 You can install `collegehoops` from GitHub with:
