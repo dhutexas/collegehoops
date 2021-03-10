@@ -6,7 +6,7 @@ You can install `ncaaStats` from GitHub with:
 
 ``` r
 # install.packages("devtools")
-install_github("dhutexas/ncaa_bball")
+install_github("dhutexas/collegehoops")
 ```
 
 ## Obtaining Data
