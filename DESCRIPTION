@@ -1,11 +1,11 @@
 Package: ncaaStats
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Functions to Scrape NCAA Basketball Data
+Version: 1.0.0
 Author: Derek J. Hanson
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: <dhanson@utexas.edu>
+Description: A series of functions for gathering college basketball data from the web.
+    Useful for gathering play-by-play, odds-data, box-scores, and other useful game-level information.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

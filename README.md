@@ -15,6 +15,8 @@ install_github("dhutexas/ncaa_bball")
 * ```get_game_data(espn_game_id)```:  Returns play-by-play data (if available) along with shot location data (if available) and basic facts about the game (home, away, final score, etc.).
 * ```get_box_score_team(espn_game_id)```:  Returns team-oriented box-score data for an individual game.
 * ```get_box_score_players(espn_game_id)```:  Returns player-oriented box-score data for an individual game.
+* ```get_kenpom_data(season)```:  Returns end-of-season or most recent (if current seson) Ken Pomeroy ratings and rankings in a tidy format.
+
 
 The `season` parameter can be written either in the format "2020-21" or "21", where the final number refers to the year in which the NCAA Tournament is played.
 
