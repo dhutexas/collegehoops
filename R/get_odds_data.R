@@ -1,6 +1,8 @@
 ################################### Get Odds Data ##############################
 #' Get odds data for a given gameId
 #'
+#' Notes:
+#' ESPN odds data only go back to 2012-13 season
 #' Requires use of ESPN oriented team names, found in locally saved file (ids.csv)
 #'
 #' @import dplyr tidyr httr jsonlite glue lubridate
