@@ -38,3 +38,7 @@ This dataset can be loaded by typing ```ids```, after installing and loading the
 ## Acknowledgements and Thanks
 
 This package owes a special debt of gratitude to Luke Benz and those over at `ncaahoopR`, including Saiem Gilani. If you are looking for a different way to gather this data, or some alternative functions, please check out their work.
+
+## Notes on Dependencies
+
+Designed to be easily updated, and reflecting my comfort in the tidyverse, this package has a long list of dependencies. Most are within the tidyverse, and are likely installed on your machine already. In future versions of this package the code may be updated to reduce the number of dependencies. 
