@@ -1,4 +1,4 @@
-Package: ncaaStats
+Package: collegehoops
 Type: Package
 Title: Functions to Scrape NCAA Basketball Data
 Version: 1.0.0
