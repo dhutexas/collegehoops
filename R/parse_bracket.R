@@ -11,7 +11,7 @@
 #'
 #'
 
-parse_bracket <- function (prediction_file, year = 2019)
+parse_bracket <- function (prediction_file, year = 2021)
 {
   utils::data("all_slots", package = "collegehoops", envir = environment())
 

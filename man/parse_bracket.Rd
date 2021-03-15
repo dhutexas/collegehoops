@@ -4,7 +4,7 @@
 \alias{parse_bracket}
 \title{Generates a dataframe of predictions ready to be printed to bracket}
 \usage{
-parse_bracket(prediction_file, year = 2019)
+parse_bracket(prediction_file, year = 2021)
 }
 \description{
 Given a csv file of kaggle game predictions, and season, this function
