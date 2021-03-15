@@ -2,7 +2,7 @@
 #' Fill out the 64 team tournament bracket with predictions
 #' from zachmayer/kaggleNCAA on github
 #'
-#' @title Generate a printable NCAA bracket
+#' @title Generate a printable NCAA bracket of predicted winners
 #'
 #' @description Given an NCAA tournament bracket (a list of slots and who won
 #' the game) this function will plot the bracket in a way that can be printed
@@ -20,7 +20,9 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printBracket <- function(bracket){
+
+
+print_bracket <- function(bracket){
   utils::data('seed_print_positions', package='collegehoops', envir=environment())
   utils::data('slot_print_positions', package='collegehoops', envir=environment())
   utils::data('tourney_seeds', package='collegehoops', envir=environment())

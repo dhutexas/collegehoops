@@ -2,18 +2,30 @@
 #' Convert Kaggle predictions to bracket format
 #' from zachmayer/kaggleNCAA on github
 #'
-#' @title Generate a printable NCAA bracket
+#' @title Generates a dataframe of predictions ready to be printed to bracket
 #'
-#' @description Given a dataframe of kaggle game predictions, this function
+#' @description Given a csv file of kaggle game predictions, and season, this function
 #' returns data in a format which can be easily plotted
 #'
-#' @import data.table
+#' @import data.table tidyr dplyr utils
 #'
 #'
 
-walkBracket <- function (preds, year = 2019)
+parse_bracket <- function (prediction_file, year = 2019)
 {
   utils::data("all_slots", package = "collegehoops", envir = environment())
+
+  # read in kaggle submission file, return parsed bracket
+  utils::read.csv(prediction_file) %>%
+    tidyr::separate(ID, into = c('season', 'teamid_1', 'teamid_2'), sep = '_') %>%
+    dplyr::rename(pred = Pred) %>%
+    dplyr::mutate(women = 0,
+                  season = as.integer(season),
+                  teamid_1 = as.integer(teamid_1),
+                  teamid_2 = as.integer(teamid_2)) %>%
+    dplyr::select(season, teamid_1, teamid_2, women, pred) %>%
+    data.table::as.data.table() -> preds
+
   season = year
   preds <- preds[season == year, ]
   n1 <- nrow(preds)
