@@ -13,7 +13,7 @@
 
 walkBracket <- function (preds, year = 2019)
 {
-  utils::data("all_slots", package = "ncaaStats", envir = environment())
+  utils::data("all_slots", package = "collegehoops", envir = environment())
   season = year
   preds <- preds[season == year, ]
   n1 <- nrow(preds)

@@ -20,10 +20,10 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
 printBracket <- function(bracket){
-  utils::data('seed_print_positions', package='ncaaStats', envir=environment())
-  utils::data('slot_print_positions', package='ncaaStats', envir=environment())
-  utils::data('tourney_seeds', package='ncaaStats', envir=environment())
-  utils::data('teams', package='ncaaStats', envir=environment())
+  utils::data('seed_print_positions', package='collegehoops', envir=environment())
+  utils::data('slot_print_positions', package='collegehoops', envir=environment())
+  utils::data('tourney_seeds', package='collegehoops', envir=environment())
+  utils::data('teams', package='collegehoops', envir=environment())
 
   #Deep copy to avoid updating data
   bracket <- data.table::copy(bracket)
