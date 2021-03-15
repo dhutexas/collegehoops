@@ -10,7 +10,8 @@
 #'
 #' @param bracket A bracket to print off
 #'
-#' @import data.table graphics
+#' @import data.table graphics dplyr
+#' @importFrom magrittr %>% %<>%
 #'
 #' @return NULL
 #' @export
@@ -33,9 +34,12 @@ printBracket <- function(bracket){
   stopifnot(length(year)==1)
 
   #Subset seeds current year
-  tourney_seeds <- tourney_seeds[season == year,]
+  #tourney_seeds <- tourney_seeds[season == year,]
+  tourney_seeds %<>%
+    dplyr::filter(season == year) %>%
+    data.table::as.data.table()
 
-  KEYS <- c('teamid', 'women')
+  KEYS <- 'teamid'
 
   #Add team names
   data.table::setnames(bracket, 'winner', 'teamid')
