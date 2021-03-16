@@ -1,6 +1,6 @@
 ######################## Complete Bracket with Predictions ####################
 #' Fill out the 64 team tournament bracket with predictions
-#' from zachmayer/kaggleNCAA on github
+#' from zachmayer/kaggleNCAA on github, updated by Derek J. Hanson
 #'
 #' @title Generate a printable NCAA bracket of predicted winners
 #'
@@ -22,7 +22,7 @@
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
 
 
-print_bracket <- function(bracket){
+print_bracket <- function(bracket, font_size = .7){
   utils::data('seed_print_positions', package='collegehoops', envir=environment())
   utils::data('slot_print_positions', package='collegehoops', envir=environment())
   utils::data('tourney_seeds', package='collegehoops', envir=environment())
@@ -55,8 +55,8 @@ print_bracket <- function(bracket){
   bracket_seeds[,teamname := paste0(teamname, '-(', seed_int, ')')]
   bracket[,teamname := paste0(teamname, '-(', seed_int, ')')]
 
-  #Add probs
-  bracket[,teamname := paste0(teamname, '-(', round(prob, 2), ')')]
+  #Add preds
+  bracket[,teamname := paste0(teamname, '-(', round(pred, 2), ')')]
 
   #Add printing positions
   bracket_seeds <- merge(bracket_seeds, seed_print_positions, by=c('seed'), all.x=TRUE)
@@ -106,14 +106,14 @@ print_bracket <- function(bracket){
 
   #Print Winner
   winner <- bracket[slot == 'R6CH',]
-  graphics::text(winner$x,winner$y,winner$teamname, cex=2.5)
+  graphics::text(winner$x,winner$y,winner$teamname, cex=font_size*2)
 
   #Print Bracket
   bracket <- bracket[slot != 'R6CH',]
-  graphics::text(bracket$x, bracket$y, bracket$teamname,cex=.4)
+  graphics::text(bracket$x, bracket$y, bracket$teamname,cex=font_size)
 
   #Print seeds
-  graphics::text(bracket_seeds$x, bracket_seeds$y, bracket_seeds$teamname,cex=.4)
+  graphics::text(bracket_seeds$x, bracket_seeds$y, bracket_seeds$teamname,cex=font_size)
 
   #Return nothing
   return(invisible())
